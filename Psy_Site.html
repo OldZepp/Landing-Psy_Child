@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Алексей Смирнов | Детский и семейный психолог</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Manrope', sans-serif;
+      background-color: #F5F2EB;
+      color: #2C3E44;
+      line-height: 1.4;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* мягкие скругления, тени */
+    .service-card, .step-card, .faq-item, .price-card, .review-card {
+      border-radius: 32px;
+      background: rgba(255, 255, 245, 0.9);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(163, 181, 166, 0.2);
+      transition: all 0.25s ease;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #A3B5A6;
+      color: #1F2E2E;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background-color: #D9C7BB;
+      color: #2C3E44;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+    }
+
+    .btn-primary:hover {
+      background-color: #CBB4A6;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #A3B5A6;
+      color: #2C3E44;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    
+    h2 i {
+      font-size: 1.8rem;
+      color: #A3B5A6;
+      font-weight: 300;
+    }
+
+    /* Секции с различными фонами и плавными градиентными переходами */
+    .section {
+      padding: 70px 0;
+      position: relative;
+    }
+
+    /* Чередование фонов с градиентами */
+    .section-1 { background: linear-gradient(135deg, #F5F2EB 0%, #FDF8F2 100%); }
+    .section-2 { background: linear-gradient(135deg, #F0EDE4 0%, #F9F4EC 100%); position: relative; }
+    .section-3 { background: linear-gradient(135deg, #F5F2EB 0%, #F7F0E8 100%); }
+    .section-4 { background: linear-gradient(135deg, #EAE5DC 0%, #F5EFE7 100%); }
+    .section-5 { background: linear-gradient(135deg, #FDF9F4 0%, #F5F0E8 100%); }
+    .section-6 { background: linear-gradient(135deg, #F2EEE6 0%, #FBF6EF 100%); }
+    .section-7 { background: linear-gradient(135deg, #F5F2EB 0%, #FEFAF5 100%); }
+    .section-8 { background: linear-gradient(135deg, #F0EDE4 0%, #FAF5EF 100%); }
+
+    /* Акварельные декоративные элементы */
+    .section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(circle at 10% 20%, rgba(229,197,180,0.08) 0%, transparent 60%);
+    }
+
+    /* Верхний блок с меню - закреплен */
+    .fixed-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(245, 242, 235, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(163, 181, 166, 0.3);
+      transition: all 0.2s ease;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2C3E44;
+    }
+    .logo span {
+      font-weight: 400;
+      font-size: 0.8rem;
+      display: block;
+      color: #6C828A;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #2C3E44;
+      font-weight: 500;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover {
+      color: #8B6E5E;
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 20px 0 20px;
+    }
+    .hero-content { flex: 1; }
+    .hero-image { flex: 1; text-align: center; }
+    .hero-image img {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 48px;
+      object-fit: cover;
+      box-shadow: 0 30px 30px -20px rgba(0,0,0,0.2);
+    }
+    .badge {
+      background: #E5C5B4;
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .grid-3, .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .service-card, .step-card, .price-card {
+      padding: 28px 20px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover, .step-card:hover, .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+    }
+    .service-card i, .step-card i, .price-card i { color: #A3B5A6; }
+    .step-card { text-align: left; }
+    
+    /* Стили для карточек отзывов */
+    .review-card {
+      padding: 24px 20px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+    }
+    .review-photo {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      border-radius: 28px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .review-photo:hover {
+      transform: scale(1.02);
+    }
+    .review-text {
+      font-style: normal;
+      margin-top: 8px;
+    }
+    .review-card p {
+      margin: 12px 0;
+      line-height: 1.5;
+    }
+    .review-stars {
+      color: #E5C5B4;
+      margin-bottom: 8px;
+    }
+    
+    /* Стили для блока "Пространство для доверия" */
+    .office-features {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .office-features i {
+      width: 28px;
+      color: #A3B5A6;
+    }
+    
+    /* FAQ стили */
+    .faq-item { padding: 0; margin-bottom: 16px; overflow: hidden; }
+    .faq-question {
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 28px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .faq-question:hover { background: rgba(163, 181, 166, 0.08); }
+    .faq-question i.fa-chevron-down { transition: transform 0.3s ease; color: #A3B5A6; }
+    .faq-item.active .faq-question i.fa-chevron-down { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, padding 0.2s;
+      padding: 0 28px;
+      color: #4a5f66;
+      line-height: 1.5;
+    }
+    .faq-item.active .faq-answer { max-height: 200px; padding: 0 28px 20px 28px; }
+    
+    .counter {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #A3B5A6;
+    }
+    .price-card .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input, select {
+      padding: 14px 18px;
+      border-radius: 40px;
+      border: 1px solid #ddd6cf;
+      background: white;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #CBB4A6;
+      box-shadow: 0 0 0 3px rgba(203, 180, 166, 0.2);
+    }
+    .footer {
+      background: #EBE4DA;
+      text-align: center;
+      padding: 32px 0;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 800px) {
+      .nav-links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+      nav { flex-direction: column; align-items: center; gap: 12px; }
+      .hero { flex-direction: column; text-align: center; }
+      .section { padding: 50px 0; }
+      .logo { text-align: center; }
+      h2 { font-size: 1.6rem; }
+      h2 i { font-size: 1.4rem; }
+      .faq-question { padding: 16px 20px; }
+      .faq-item.active .faq-answer { padding: 0 20px 16px 20px; }
+      .review-photo { max-width: 200px; }
+      .grid-3 { gap: 20px; }
+    }
+    .trust-sign {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px 0 20px;
+      flex-wrap: wrap;
+    }
+    .trust-sign span i { margin-right: 6px; color: #A3B5A6; }
+    .quote-block {
+      background: linear-gradient(125deg, #E5C5B4 0%, #D9B8A8 100%);
+      border-radius: 32px;
+      padding: 30px;
+      text-align: center;
+      color: #2C3E44;
+    }
+  </style>
+</head>
+<body>
+  <div class="fixed-nav">
+    <div class="container">
+      <nav>
+        <div class="logo">Алексей Смирнов <span>детский и семейный психолог</span></div>
+        <ul class="nav-links">
+          <li><a data-target="about">Обо мне</a></li>
+          <li><a data-target="services">Услуги</a></li>
+          <li><a data-target="method">Метод</a></li>
+          <li><a data-target="office">Кабинет</a></li>
+          <li><a data-target="pricing">Стоимость</a></li>
+          <li><a data-target="contact">Запись</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <!-- Hero секция -->
+    <div class="section section-1" id="hero">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-content">
+            <div class="badge"><i class="fas fa-shield-alt"></i> Работаю с детьми 3-14 лет · безопасно</div>
+            <h1>Помогаю детям быть счастливыми, а родителям — уверенными в себе</h1>
+            <p style="font-size: 1.2rem; margin: 20px 0 24px; color:#41656E;">Индивидуальные и семейные консультации. Определим проблему → подберем решение → сопроводим результат.</p>
+            <a href="#contact" class="btn btn-primary custom-link" data-target="contact"><i class="fas fa-calendar-check"></i> Записаться на знакомство (15 мин бесплатно)</a>
+            <div class="trust-sign">
+              <span><i class="fas fa-smile-wink"></i> 200+ семей</span>
+              <span><i class="fas fa-hourglass-half"></i> Опыт 12 лет</span>
+              <span><i class="fas fa-puzzle-piece"></i> Игровая терапия</span>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="https://i.imgur.com/mIlGPmJ.png" alt="Алексей Смирнов, детский психолог">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Блок запросов (услуги) -->
+    <div class="section section-2" id="services">
+      <div class="container">
+        <h2><i class="fas fa-feather-alt"></i> С какими запросами работаю</h2>
+        <div class="grid-3">
+          <div class="service-card"><i class="fas fa-cloud-rain" style="font-size: 2rem;"></i><h3>Агрессия, страхи, застенчивость</h3><p>Помогаю детям выражать эмоции без крика и замкнутости.</p></div>
+          <div class="service-card"><i class="fas fa-heart-broken" style="font-size: 2rem;"></i><h3>Развод, ревность, адаптация</h3><p>Семейные изменения без стресса для ребенка.</p></div>
+          <div class="service-card"><i class="fas fa-book-open" style="font-size: 2rem;"></i><h3>Школьная неуспеваемость и тревога</h3><p>Восстанавливаем интерес и спокойствие.</p></div>
+          <div class="service-card"><i class="fas fa-hand-sparkles" style="font-size: 2rem;"></i><h3>Конфликт родитель-ребенок</h3><p>Мужской взгляд поможет найти общий язык.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Почему мужчина-психолог -->
+    <div class="section section-3">
+      <div class="container">
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+          <div style="flex:1"><i class="fas fa-user-check" style="font-size: 4rem; color:#CBB4A6;"></i><h3>Почему родители выбирают мужчину-психолога?</h3>
+            <ul style="margin-top: 20px; list-style: none;">
+              <li>✓ <strong>Меньше осуждения</strong> – больше фокуса на действии и решении.</li>
+              <li>✓ Ребёнок учится здоровой мужской модели поведения и уважению.</li>
+              <li>✓ Спокойный, устойчивый стиль ведения консультации.</li>
+              <li>✓ Работаю с <strong>семьёй целиком</strong>, а не только с ребёнком.</li>
+            </ul>
+          </div>
+          <div style="flex:1;"><div class="quote-block"><i class="fas fa-quote-left" style="font-size: 2rem; opacity:0.7;"></i><p style="font-style: italic; margin-top: 16px; font-size: 1.1rem;">«Я не использую слова «ты плохой родитель». Моя задача — сделать процесс воспитания спокойным».</p><strong>— Алексей Смирнов</strong></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Метод работы 3 шага -->
+    <div class="section section-4" id="method">
+      <div class="container">
+        <h2><i class="fas fa-chalkboard-user"></i> Метод работы: как решаем проблему</h2>
+        <div class="grid-3">
+          <div class="step-card"><div class="counter">01</div><i class="fas fa-stethoscope" style="font-size: 1.6rem; margin-bottom: 12px; display: inline-block;"></i><h3>Диагностическая консультация (60 мин)</h3><p>Выявляю корень, а не симптомы. Игровые методики, беседа с родителями.</p></div>
+          <div class="step-card"><div class="counter">02</div><i class="fas fa-drafting-compass" style="font-size: 1.6rem; margin-bottom: 12px; display: inline-block;"></i><h3>Совместный план действий</h3><p>Разрабатываю упражнения для родителей и ребёнка, даю техники на дом.</p></div>
+          <div class="step-card"><div class="counter">03</div><i class="fas fa-seedling" style="font-size: 1.6rem; margin-bottom: 12px; display: inline-block;"></i><h3>Корректирующие занятия (от 2 до 8 встреч)</h3><p>Закрепляем результат + гибридные форматы: часть с ребёнком, часть с родителями.</p></div>
+        </div>
+        <div style="text-align:center; margin-top: 32px;"><i class="fas fa-laptop-house"></i> Дополнительно: поддерживающие онлайн-консультации</div>
+      </div>
+    </div>
+
+    <!-- Блок: Пространство для доверия (уютный офис) -->
+    <div class="section section-8" id="office">
+      <div class="container">
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+          <div style="flex:1; text-align:center;">
+            <img src="https://i.imgur.com/ogdpCq0.jpeg" alt="Уютный кабинет психолога" style="border-radius: 48px; width:100%; max-width: 420px; box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);">
+          </div>
+          <div style="flex:1;">
+            <h2 style="justify-content: flex-start; margin-bottom: 20px;"><i class="fas fa-home"></i> Пространство для доверия</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 16px; color: #41656E;">Приём веду в уютном, безопасном офисе, где каждый чувствует себя спокойно.</p>
+            <p>Мягкий свет, удобные кресла, песочница и игрушки — всё продумано, чтобы и взрослый, и ребёнок расслабились и открылись. В такой атмосфере терапия идёт мягче, а результаты приходят быстрее.</p>
+            <div class="office-features">
+              <div><i class="fas fa-leaf"></i> Без казённой обстановки — только тепло и уют</div>
+              <div><i class="fas fa-child"></i> Игровая зона с безопасными материалами</div>
+              <div><i class="fas fa-coffee"></i> Чай и комфортная зона для родителей</div>
+              <div><i class="fas fa-feather-alt"></i> Расслабляющая музыка и мягкое освещение</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Цены -->
+    <div class="section section-5" id="pricing">
+      <div class="container">
+        <h2><i class="fas fa-tag"></i> Прозрачные цены</h2>
+        <div class="grid-3">
+          <div class="price-card"><i class="fas fa-hand-peace" style="font-size: 2rem;"></i><h3>Знакомство</h3><div class="price">0 ₽</div><p>15 мин, видео или в кабинете</p><i class="fas fa-comment-dots"></i> без обязательств</div>
+          <div class="price-card"><i class="fas fa-clipboard-list" style="font-size: 2rem;"></i><h3>Диагностическая</h3><div class="price">3 500 ₽</div><p>60 минут, с родителями и ребёнком</p></div>
+          <div class="price-card"><i class="fas fa-child" style="font-size: 2rem;"></i><h3>Индивидуальное занятие</h3><div class="price">2 800 ₽</div><p>с ребёнком (игровая терапия)</p></div>
+          <div class="price-card"><i class="fas fa-users" style="font-size: 2rem;"></i><h3>Семейная консультация</h3><div class="price">4 500 ₽</div><p>оба родителя + ребёнок</p></div>
+        </div>
+        <div style="text-align: center; margin-top: 28px;"><span class="badge"><i class="fas fa-gem"></i> Абонемент на 5 занятий — скидка 10%</span> <a href="#contact" class="btn btn-outline custom-link" data-target="contact">Узнать детали</a></div>
+      </div>
+    </div>
+
+    <!-- Обо мне -->
+    <div class="section section-6" id="about">
+      <div class="container">
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+          <div style="flex:1; text-align:center;">
+            <img src="https://i.imgur.com/mIlGPmJ.png" style="border-radius: 48px; width:100%; max-width:300px; box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);" alt="Алексей Смирнов">
+          </div>
+          <div style="flex:2;"><h2 style="justify-content: flex-start;"><i class="fas fa-user-astronaut"></i> Обо мне</h2><p>Меня зовут Алексей Смирнов, я практикующий детский и семейный психолог. Образование: МГППУ, клинический психолог, сертификаты по песочной терапии, игровой терапии и работе с детской травмой. Опыт более 12 лет, прошёл супервизию по методу «Безопасное пространство». Помогаю детям и взрослым находить контакт без давления.</p>
+          <p style="margin-top: 12px;"><i class="fas fa-certificate"></i> Сертификаты доступны по запросу.</p>
+          <a href="#contact" class="btn btn-primary custom-link" data-target="contact">Записаться на приём</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Отзывы с фотографиями семей -->
+    <div class="section section-3">
+      <div class="container">
+        <h2><i class="fas fa-message"></i> Родители доверяют</h2>
+        <div class="grid-3">
+          <div class="review-card">
+            <img class="review-photo" src="https://i.imgur.com/Z7ORs3z.jpeg" alt="Мама с дочкой">
+            <div class="review-text">
+              <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p>«После консультаций с Алексеем дочка стала спокойнее спать, исчезли ночные страхи. Я наконец понимаю, как правильно реагировать на её эмоции. Огромное спасибо за поддержку!»</p>
+              <strong>— Елена, мама 6-летней Софии</strong>
+            </div>
+          </div>
+          <div class="review-card">
+            <img class="review-photo" src="https://i.imgur.com/LZxo3tO.jpeg" alt="Папа с сыном">
+            <div class="review-text">
+              <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p>«Сын стал замкнутым после переезда. Алексей помог ему обрести уверенность, и теперь мы снова играем и разговариваем по душам. Очень рад, что обратился к мужчине-психологу.»</p>
+              <strong>— Дмитрий, папа 9-летнего Артёма</strong>
+            </div>
+          </div>
+          <div class="review-card">
+            <img class="review-photo" src="https://i.imgur.com/ZfzlgK7.jpeg" alt="Семья из четырёх человек">
+            <div class="review-text">
+              <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p>«Семейные консультации изменили нашу жизнь! Дети перестали ссориться, мы с мужем снова научились слышать друг друга. Алексей помог нам стать по-настоящему счастливой семьёй.»</p>
+              <strong>— Семья Ивановых: мама Ольга, папа Сергей, Алина и Кирилл</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section section-4" id="faq">
+      <div class="container">
+        <h2><i class="fas fa-circle-question"></i> Частые вопросы</h2>
+        <div class="faq-item">
+          <div class="faq-question">Не боится ли ребёнок мужчину-психолога? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Игровой формат, я сижу не выше уровня ребёнка, всегда использую мягкие игрушки и песок. Адаптируюсь к темпу ребенка.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Вы только с детьми или с родителями тоже? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Обязательно работаю с родительской позицией. Без участия родителей прогресс идёт медленнее. Совместные и семейные сессии — моя основа.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Подходит ли метод для подростков 10-14 лет? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Да. С подростками я использую доверительные переговоры, арт-терапию и метафорические карты, без поучений.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Что входит в бесплатное знакомство 15 мин? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Коротко расскажете о ситуации, я отвечу на вопросы, предложу первые шаги и поймём, комфортно ли вам со мной работать.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Форма записи -->
+    <div class="section section-7" id="contact">
+      <div class="container">
+        <h2><i class="fas fa-calendar-alt"></i> Запись на консультацию</h2>
+        <p style="text-align:center; max-width:600px; margin:0 auto 32px;">Выберите удобные дату и время. После отправки получите <strong>PDF «5 фраз, которые успокоят ребёнка»</strong> бесплатно.</p>
+        <form id="leadForm">
+          <input type="text" placeholder="Ваше имя" required>
+          <input type="tel" placeholder="Телефон или Telegram" required>
+          <select>
+            <option>Диагностическая консультация (60 мин)</option>
+            <option>Индивидуальное занятие с ребёнком</option>
+            <option>Семейная консультация</option>
+            <option>Бесплатное знакомство 15 мин</option>
+          </select>
+          <input type="text" placeholder="Удобное время/дата (пример: вторник после 16:00)">
+          <label style="display: flex; align-items: center; gap: 10px;"><input type="checkbox" required> Я даю согласие на обработку персональных данных</label>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Отправить — получите варианты в течение часа</button>
+        </form>
+        <p style="text-align:center; font-size:0.8rem; margin-top:20px;">После отправки PDF-файл придёт в мессенджер</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <p>ИП Смирнов А.В. | ОГРНИП 1234567890123 | Политика конфиденциальности</p>
+      <p style="margin-top: 8px;"><i class="fas fa-phone-alt"></i> +7 (999) 123-45-67 | <i class="fab fa-telegram"></i> @psy_smirnov | Санкт-Петербург, м. Петроградская</p>
+    </div>
+  </div>
+
+<script>
+  // Функция плавной прокрутки с учётом высоты фиксированного меню
+  function smoothScrollToElement(elementId) {
+    const targetElement = document.getElementById(elementId);
+    if (!targetElement) return;
+    const fixedNav = document.querySelector('.fixed-nav');
+    const navHeight = fixedNav ? fixedNav.offsetHeight : 80;
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20;
+    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+  }
+
+  // Обработка кликов по пунктам меню
+  document.querySelectorAll('.nav-links a, .custom-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('data-target');
+      if (targetId) smoothScrollToElement(targetId);
+    });
+  });
+
+  // Обработка для ссылок с href="#..."
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const hash = this.getAttribute('href');
+      if (hash && hash !== '#') {
+        const targetId = hash.substring(1);
+        if (document.getElementById(targetId)) {
+          e.preventDefault();
+          smoothScrollToElement(targetId);
+        }
+      }
+    });
+  });
+
+  // Аккордеон для FAQ
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const questionDiv = item.querySelector('.faq-question');
+    questionDiv.addEventListener('click', function(e) {
+      e.stopPropagation();
+      item.classList.toggle('active');
+    });
+  });
+
+  // Лид-форма
+  document.getElementById('leadForm')?.addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Спасибо! Мы свяжемся с вами в течение часа, а PDF-файл "5 фраз, которые успокоят ребёнка" отправлен в Telegram/сообщение. Будьте на связи :)');
+    this.reset();
+  });
+</script>
+</body>
+</html>
